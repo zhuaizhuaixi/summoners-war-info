@@ -1,0 +1,49 @@
+description = 'a information platform about summoners war'
+
+buildscript {
+	ext {
+		springBootVersion = '2.0.1.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath('org.springframework:springloaded:1.2.7.RELEASE')
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+repositories {
+	maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'war'
+
+group = 'com.zzx'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+configurations {
+	providedRuntime
+}
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-web')
+//	compile('org.springframework.data:spring-data-redis')
+
+	//kafka support
+	compile group: 'org.springframework.kafka', name: 'spring-kafka', version: '2.1.9.RELEASE'
+
+	compile group: 'com.alibaba', name: 'fastjson', version: '1.2.49'
+
+	compile('mysql:mysql-connector-java')
+	compile('org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.2')
+
+	//dev tool
+	compile("org.springframework.boot:spring-boot-devtools")
+
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
