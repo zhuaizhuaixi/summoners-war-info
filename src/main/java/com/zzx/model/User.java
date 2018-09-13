@@ -1,15 +1,26 @@
 package com.zzx.model;
 
+import javax.persistence.*;
+
 /**
+ * @author zzx
  * Created by zzx on 2018/8/5.
  */
+@Entity
+@Table(name = "t_user")
 public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
 
+    @Column
     private String userName;
 
+    @Column
     private String password;
 
+    @Column
     private String phone;
 
     public Integer getUserId() {

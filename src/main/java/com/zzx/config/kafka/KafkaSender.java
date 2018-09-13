@@ -1,6 +1,7 @@
 package com.zzx.config.kafka;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.kafka.support.SendResult;
@@ -10,15 +11,24 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author zzx
  */
 @Component
+@ConfigurationProperties("my")
 public class KafkaSender {
 
     @Autowired
     private KafkaTemplate kafkaTemplate;
+
+    private List<String> servers = new ArrayList<>();
+
+    public List<String> getServers() {
+        return this.servers;
+    }
 
     /**
      * 发送消息到kafka,主题为test

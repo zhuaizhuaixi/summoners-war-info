@@ -2,10 +2,14 @@ server:
   #display-name: webTemplate
   port: 8088
 
+my:
+  servers:
+    dev.bar.com, fo11o.bar.com
+
+
 spring:
   datasource:
     name: local-mysql
-    driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/test1?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: root
     password:
@@ -17,7 +21,8 @@ spring:
     producer:
       batch-size: 32000
       buffer-memory: 43320
+  output:
+    ansi:
+      enabled: always
 
-mybatis:
-  mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.zzx.model
+debug: false
